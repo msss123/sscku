@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+    <style>
+        .wrap{
+            width:300px;
+            height: 300px;
+            border: 15px solid black;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .box{
+            width: 1500px;
+            height: 300px;
+            position: absolute;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+            float: left;
+        }
+        .left{
+            width: 20px;
+            height: 40px;
+            background-color: #c0cdb1;
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            left:0px;
+            top:130px;
+            cursor: pointer;
+        }
+        .right{
+            width: 20px;
+            height: 40px;
+            background-color: #c0cdb1;
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            right: 0px;
+            top:130px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(function(){
+            var timer=setInterval(move,1000)
+            function move(){
+                $('.box').stop().animate({left:-300},function(){
+                    $('img:first').appendTo('.box')
+                    $('.box').css('left','0')
+                })
+            }
+            $('.right').click(move);
+            $('.left').click(function(){
+                $('img:last').prependTo('.box');
+                $('.box').css('left','-300px');
+                $('.box').stop().animate({left:0});
+            })
+            $('.wrap').hover(function(){
+                clearInterval(timer)
+            },function(){
+                timer=setInterval(move,1000)
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="box">
+        <img src="利物浦.jpg" alt="">
+        <img src="埃弗顿.jpg" alt="">
+        <img src="莱斯特城.jpg" alt="">
+        <img src="阿斯顿维拉.jpg" alt="">
+        <img src="阿森纳.jpg" alt="">
+    </div>
+    <div class="left"> < </div>
+    <div class="right"> > </div>
+</div>
+</body>
+</html>
